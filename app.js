@@ -10,5 +10,22 @@ function signUp(){
     email,
     password,
  }
- console.log(userObj)
+
+ var getUsers= JSON.parse(localStorage.getItem("users"))
+ console.log(getUsers,"getUsers")
+
+ if(getUsers==null)
+   {
+    var arr=[]
+   arr.push(userObj)
+  console.log("first user signup")
+  localStorage.setItem("users",JSON.stringify(arr))
+  
+   }
+   else{
+      console.log("user signup")
+      getUsers.push(userObj)
+      localStorage.setItem("users",JSON.stringify(userObj))
+   }
+ 
 }
