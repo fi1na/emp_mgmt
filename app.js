@@ -27,5 +27,26 @@ function signUp(){
       getUsers.push(userObj)
       localStorage.setItem("users",JSON.stringify(userObj))
    }
- 
+    alert("Registration successful!");
+    document.getElementById('signup').style.display = 'none';
+    document.getElementById('login').style.display = 'block';
 }
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var loginEmail = document.getElementById("loginEmail").value;
+    var loginPassword = document.getElementById("loginPassword").value;
+    if (!loginEmail || !loginPassword) {
+        console.error("All fields are required");
+        alert("Please fill in all fields.");
+        return;
+    }
+    var getUsers = JSON.parse(localStorage.getItem("users")) || [];
+    var userFound = getUsers.find(user => user.email === loginEmail && user.password === loginPassword);
+
+    if (userFound) {
+        alert("Login successful!");
+    } else {
+        alert("Invalid email or password.");
+    }
+});
